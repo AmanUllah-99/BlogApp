@@ -1,5 +1,5 @@
-import conf from '../conf/conf.js'
-import { Client, ID, Databases, Storage, Query } from 'appwrite'
+ import conf from '../conf/conf.js'
+import { Client, ID, TablesDB, Storage, Query } from 'appwrite'
 
 
 
@@ -15,7 +15,7 @@ export class DatabaseService {
     this.client
       .setEndpoint(conf.appwriteURL)
       .setProject(conf.appwriteProjectId)
-    this.databases = new Databases(this.client)
+    this.databases = new TablesDB(this.client)
     this.storage = new Storage(this.client)
   }
 
@@ -23,16 +23,18 @@ export class DatabaseService {
 
   async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
-      return await this.databases.createDocument(
-        conf.appwriteDatabaseId,
-        conf.appwriteTableId,
-        slug,
+      return await this.databases.createRow(
         {
-          title,
-          content,
-          featuredImage,
-          status,
-          userId,
+          databaseId: conf.appwriteDatabaseId,
+          tableId: conf.appwriteTableId,
+          rowId: slug,
+          data: {
+            title,
+            content,
+            featuredImage,
+            status,
+            userId,
+          }
         }
       )
     } catch (error) {
@@ -44,15 +46,17 @@ export class DatabaseService {
   /////////////////////// In Update Post Session/////////////////////////////
   async updatePost(slug, { title, content, featuredImage, status }) {
     try {
-      return await this.databases.updateDocument(
-        conf.appwriteDatabaseId,
-        conf.appwriteTableId,
-        slug,
+      return await this.databases.updateRow(
         {
-          title,
-          content,
-          featuredImage,
-          status,
+          databaseId: conf.appwriteDatabaseId,
+          tableId: conf.appwriteTableId,
+          rowId: slug,
+          data: {
+            title,
+            content,
+            featuredImage,
+            status,
+          }
         }
       )
     } catch (error) {
@@ -64,10 +68,12 @@ export class DatabaseService {
 
   async deletePost(slug) {
     try {
-      await this.databases.deleteDocument(
-        conf.appwriteDatabaseId,
-        conf.appwriteTableId,
-        slug
+      await this.databases.deleteRow(
+        {
+          databaseId: conf.appwriteDatabaseId,
+          tableId: conf.appwriteTableId,
+          rowId: slug
+        }
       )
       return true
     } catch (error) {
@@ -79,10 +85,12 @@ export class DatabaseService {
   ////////////////////////// Get Only One Post   in This Session///////////////////
   async getPost(slug) {
     try {
-      return await this.databases.getDocument(
-        conf.appwriteDatabaseId,
-        conf.appwriteTableId,
-        slug
+      return await this.databases.getRow(
+        {
+          databaseId: conf.appwriteDatabaseId,
+          tableId: conf.appwriteTableId,
+          rowId: slug
+        }
       )
     } catch (error) {
       console.error('appWrite Server:: getPost error::', error)
@@ -94,10 +102,12 @@ export class DatabaseService {
 
   async getPosts(queries = [Query.equal("status", "active")]) {
     try {
-      return await this.databases.listDocuments(
-        conf.appwriteDatabaseId,
-        conf.appwriteTableId,
-        queries
+      return await this.databases.listRows(
+        {
+          databaseId: conf.appwriteDatabaseId,
+          tableId: conf.appwriteTableId,
+          queries
+        }
       )
     } catch (error) {
       console.log('appWrite Server:: getPosts error::', error)
@@ -112,9 +122,12 @@ export class DatabaseService {
       // Provide permissions so Appwrite allows file creation from the client.
       // Using "role:all" makes the file readable by everyone; adjust as needed.
       return await this.storage.createFile(
-        conf.appwriteBucketId,
-        ID.unique(),
-        file
+        {
+          bucketId: conf.appwriteBucketId,
+          fileId: ID.unique(),
+          file,
+
+        }
       );
 
     } catch (error) {
@@ -151,7 +164,13 @@ export class DatabaseService {
 
   getFilePreview(fileId) {
     const bucketId = conf.appwriteBucketId;
-    const result = this.storage.getFileView(bucketId, fileId);
+    const result = this.storage.getFileView(
+      {
+        bucketId: conf.appwriteBucketId,
+        fileId
+      }
+    );
+
     console.log(`getFilePreview - Bucket: ${bucketId}, File: ${fileId}, Result:`, result);
     if (!result) {
       console.error('getFilePreview returned null or undefined');
@@ -163,8 +182,10 @@ export class DatabaseService {
 
   getFileDownload(fileId) {
     return this.storage.getFileDownload(
-      conf.appwriteBucketId,
-      fileId
+      {
+        bucketId: conf.appwriteBucketId,
+        fileId
+      }
     );
   }
 
