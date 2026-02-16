@@ -1,4 +1,4 @@
- import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from '../appwrite/configAppWrite'
 import { Button, Container } from "../components";
@@ -62,13 +62,6 @@ export default function Post() {
                 </div>
                 <div className="browser-css">
                     {post.content ? parse(post.content) : <p>No content available</p>}
-                    console.log(post.content);
-
-                </div>
-                {/* Debugging: Show raw content */}
-                <div className="mt-4 p-4 bg-gray-200 text-black rounded">
-                    <h3 className="font-bold">Debug - Raw Content:</h3>
-                    <pre className="whitespace-pre-wrap">{JSON.stringify(post.content)}</pre>
                 </div>
             </Container>
 
