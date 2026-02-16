@@ -1,6 +1,7 @@
- import React from 'react'
+import React from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 import { Controller } from 'react-hook-form'
+import conf from '../conf/conf'
 // import 'tinymce/tinymce.min.js';
 
 
@@ -18,7 +19,7 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
 
                 render={({ field: { onChange, value } }) => (  // render prop to render the Editor component, destructuring onChange and value from the field object provided by react-hook-form
                     <Editor  // TinyMCE Editor component
-                        apiKey='3hk7414yn8od1iqp59k497iw5mhh6rfny5jsi8szhawujtuo'
+                        apiKey={conf.tinyMceApiKey}
                         value={value}
                         initialValue={defaultValue || ''}
                         /// initial value for the editor, using defaultValue prop
