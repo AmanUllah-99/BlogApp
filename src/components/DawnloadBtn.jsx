@@ -2,6 +2,7 @@ import appwriteService from "../appwrite/configAppWrite";
 import React from "react";
 import { Button } from "./index";
 import { CloudDownloadOutlined, LikeOutlined, DislikeOutlined } from "@ant-design/icons";
+import { LuHardDriveDownload } from "react-icons/lu";
 
 function DownloadButton({ fileId, fileName }) {
 
@@ -25,9 +26,9 @@ function DownloadButton({ fileId, fileName }) {
     return (
         <button
             onClick={handleDownload}
-            className=" text-2xl text-gray-100 hover:text-blue-500 transition py-2 px-4  ml-20"
+            className=" text-2xl text-gray-100 hover:text-blue-500 transition py-2 px-4  ml-10"
         >
-            <CloudDownloadOutlined />
+            < LuHardDriveDownload />
 
         </button>
 

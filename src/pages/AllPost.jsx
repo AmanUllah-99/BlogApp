@@ -3,7 +3,6 @@ import { Container, PostCard } from '../components'
 import appwriteService from '../appwrite/configAppWrite'
 
 
-
 function AllPost() {
   const [posts, setPosts] = useState([])
 
@@ -18,7 +17,7 @@ function AllPost() {
     }).catch((err) => console.error('getPosts error', err))
   }, [])
   return (
-    <div className=' w-full py-8 '>
+    <div className=' w-full p-2 gap-2 m-auto '>
       <Container>
         <div className='flex flex-wrap'>
           {posts?.map((post) => (

@@ -33,20 +33,17 @@ function Home() {
         )
 
     }
-    console.log("posts value:", posts);
 
-    console.log("typeof posts:", typeof posts);
-    console.log("isArray:", Array.isArray(posts));
 
     /// if there are posts
     return (
         /// display posts in a grid
-        <div className='w-full py-8'>
+        <div className='w-full p-2'>
             <Container>
-                <div className='flex flex-wrap'>
+                <div className='flex flex-wrap gap-0'>
                     {
                         posts?.map((post) => (
-                            <div key={post.$id} className='p-2 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4'>
+                            <div key={post.$id} className='p-1 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4'>
                                 <PostCard {...post} />
                             </div>
                         ))

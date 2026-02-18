@@ -1,4 +1,4 @@
-
+ 
 // export default App
 
 import React, { useState, useEffect } from 'react'
@@ -24,7 +24,7 @@ function App() {
       })
       .catch((error) => {
         // Suppress "missing scopes" error for guests
-        console.log("App: User is not logged in (Guest)", error);
+        console.log("App: User is not logged in (Guest)" , error);
       })
       .finally(() => setLoading(false))
   }, [dispatch])

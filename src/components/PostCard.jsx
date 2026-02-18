@@ -1,4 +1,4 @@
-import React from 'react'
+ import React from 'react'
 import configAppWrite from '../appwrite/configAppWrite'
 import { Link } from 'react-router-dom'
 import parse from 'html-react-parser'
@@ -16,7 +16,7 @@ function PostCard({
                 <div>
                     {featuredImage && (
                         <img src={configAppWrite.getFilePreview(featuredImage)} alt={title}
-                            className='rounded-xl w-200px h-200px object-cover  mx-auto'
+                            className='rounded-xl w-[200px] h-[200px] object-cover  mx-auto'
                         />
                     )}
                 </div>
