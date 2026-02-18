@@ -33,14 +33,14 @@ export default function Post() {
     };
 
     return post ? (
-        <div className="py-4 sm:py-6 md:py-8">
+        <div className="py-4 sm:py-6 md:py-8 ">
             <Container>
-                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 sm:p-4">
+                <div className="w-full h-80 flex justify-center mb-4 relative border rounded-xl p-2 sm:p-4">
                     {post.featuredImage && (
                         <img
                             src={appwriteService.getFilePreview(post.featuredImage)}
                             alt={post.title}
-                            className="rounded-xl"
+                            className="rounded-xl w-full  object-cover"
                         />
                     )}
 
@@ -58,7 +58,9 @@ export default function Post() {
                     )}
                 </div>
                 <div className="w-full mb-6">
-                    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">{post.title}</h1>
+                    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
+                        {post.title}
+                    </h1>
                 </div>
                 <div className="browser-css">
                     {post.content ? parse(post.content) : <p>No content available</p>}
