@@ -1,42 +1,61 @@
-import React, { useState } from "react";
-import { AiOutlineLike, AiFillLike } from "react-icons/ai";
-import { AiOutlineDislike, AiFillDislike } from "react-icons/ai";
+import React, { useState, useEffect } from "react";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
-function LikeDislike() {
+function LikeDislike({ postId, initialLikes = 0 }) {
     const [liked, setLiked] = useState(false);
-    const [disliked, setDisliked] = useState(false);
+    const [likesCount, setLikesCount] = useState(initialLikes);
 
-    const handleLike = () => {
-        setLiked(!liked);
-        if (disliked) setDisliked(false);
-    };
+    // Load from localStorage on mount
+    useEffect(() => {
+        if (!postId) return;
+        
+        // Load global likes count for this post
+        const storedCount = localStorage.getItem(`likes_count_${postId}`);
+        if (storedCount) {
+            setLikesCount(parseInt(storedCount, 10));
+        } else if (initialLikes > 0) {
+            // Set initial and save
+            setLikesCount(initialLikes);
+            localStorage.setItem(`likes_count_${postId}`, initialLikes);
+        }
 
-    const handleDislike = () => {
-        setDisliked(!disliked);
-        if (liked) setLiked(false);
+        // Load if current user liked it
+        const userLiked = localStorage.getItem(`user_liked_${postId}`);
+        if (userLiked === 'true') {
+            setLiked(true);
+        }
+    }, [postId, initialLikes]);
+
+    const handleLike = (e) => {
+        e.preventDefault(); // Prevent navigation if inside a Link
+        if (!postId) return;
+
+        let newCount = likesCount;
+
+        if (liked) {
+            setLiked(false);
+            newCount = Math.max(0, likesCount - 1);
+            localStorage.setItem(`user_liked_${postId}`, 'false');
+        } else {
+            setLiked(true);
+            newCount = likesCount + 1;
+            localStorage.setItem(`user_liked_${postId}`, 'true');
+        }
+        
+        setLikesCount(newCount);
+        localStorage.setItem(`likes_count_${postId}`, newCount.toString());
     };
 
     return (
-        <div className="flex items-center gap-6 text-2xl ">
-
-            {/* LIKE */}
+        <div className="flex items-center gap-4 text-xl z-10 relative">
             <button
                 onClick={handleLike}
-                className={`transition ${liked ? "text-blue-600" : "text-white hover:text-blue-600"
-                    }`}
+                className={`flex items-center gap-1 transition-all ${liked ? "text-rose-500 scale-110" : "text-[var(--text-muted)] hover:text-rose-500"}`}
+                title={liked ? "Unlike" : "Like this post"}
             >
-                {liked ? <AiFillLike /> : <AiOutlineLike />}
+                {liked ? <AiFillHeart /> : <AiOutlineHeart />}
+                <span className="text-sm font-medium">{likesCount > 0 ? likesCount : ''}</span>
             </button>
-
-            {/* DISLIKE */}
-            <button
-                onClick={handleDislike}
-                className={`transition ${disliked ? "text-red-600" : "text-white hover:text-red-600"
-                    }`}
-            >
-                {disliked ? <AiFillDislike /> : <AiOutlineDislike />}
-            </button>
-
         </div>
     );
 }

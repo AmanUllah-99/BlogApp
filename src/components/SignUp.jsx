@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import auth from '../appwrite/auth'
 import { useDispatch } from 'react-redux'
 import { userLogin } from '../store/authSlice'
-import { Button, Input, Logo } from '../components/index.js'
+import Button from './Button.jsx'
+import Input from './Input.jsx'
+import Logo from './logo.jsx'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
@@ -33,72 +35,77 @@ function SignUp() {
         }
     }
     return (
-        <div className="flex items-center justify-center w-full   ">
-            <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10 shadow-lg`}>
-                <div className="mb-2 flex justify-center">
-                    <span className="inline-block   bg-gray-700 rounded-full  w-100px">
-                        <Logo />
+        <div className="flex items-center justify-center w-full py-16 px-4">
+            <div className={`mx-auto w-full max-w-lg bg-white/80 backdrop-blur-md rounded-2xl p-8 sm:p-10 border border-[var(--color-cream-200)] shadow-[0_8px_30px_rgb(0,0,0,0.04)]`}>
+                <div className="mb-8 flex justify-center">
+                    <span className="inline-block">
+                        <Logo width="150px" />
                     </span>
                 </div>
-                <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
-                <p className="mt-2 text-center text-base text-black/60">
+                <h2 className="text-center text-3xl font-extrabold text-[var(--text-primary)] leading-tight">Create an account</h2>
+                <p className="mt-3 text-center text-sm text-[var(--text-secondary)]">
                     Already have an account?&nbsp;
                     <Link
                         to="/login"
-                        className="font-medium text-blue-600 transition-all duration-200 hover:underline"
+                        className="font-semibold text-[var(--accent-primary)] hover:text-[var(--accent-hover)] transition-colors duration-200 hover:underline"
                     >
-                        Sign In
+                        Sign In here
                     </Link>
                 </p>
-                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+                {error && <div className="bg-red-50 text-red-600 p-4 rounded-xl mt-6 text-sm text-center border border-red-100">{error}</div>}
 
                 <form onSubmit={handleSubmit(signup)} className="mt-8">
-                    <div className='space-y-5'>
-                        <Input
-                            label="Full Name: "
-                            placeholder="Enter your full name"
-                            {...register("name", {
-                                required: true,
-                            })}
-                        />
-                        {errors.name && <p className='text-red-500 text-sm mt-1'>{errors.name.message}</p>}
+                    <div className='space-y-6'>
+                        <div>
+                            <Input
+                                label="Full Name"
+                                placeholder="John Doe"
+                                {...register("name", {
+                                    required: true,
+                                })}
+                            />
+                            {errors.name && <p className='text-rose-500 text-xs font-medium mt-1'>{errors.name.message}</p>}
+                        </div>
 
-                        <Input
-                            label="Email: "
-                            placeholder="Enter your email"
-                            type="email"
-                            {...register("email", {
-                                required: true,
-                                validate: {
-                                    matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                                        "Email address must be a valid address",
-                                }
-                            })}
-                        />
-                        {errors.email && <p className='text-red-500 text-sm mt-1'>{errors.email.message}</p>}
+                        <div>
+                            <Input
+                                label="Email Address"
+                                placeholder="you@example.com"
+                                type="email"
+                                {...register("email", {
+                                    required: true,
+                                    validate: {
+                                        matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                            "Please enter a valid email address",
+                                    }
+                                })}
+                            />
+                            {errors.email && <p className='text-rose-500 text-xs font-medium mt-1'>{errors.email.message}</p>}
+                        </div>
 
-                        <Input
-                            label="Password: "
-                            type="password"
-                            placeholder="Enter your password"
-                            {...register("password", {
-                                required: true,
-                                minLength: {
-                                    value: 8,
-                                    message: 'Password must be at least 8 characters'
-                                }
-                            })}
-                        />
-                        {errors.password && <p className='text-red-500 text-sm mt-1'>{errors.password.message}</p>}
+                        <div>
+                            <Input
+                                label="Password"
+                                type="password"
+                                placeholder="••••••••"
+                                {...register("password", {
+                                    required: true,
+                                    minLength: {
+                                        value: 8,
+                                        message: 'Password must be at least 8 characters long'
+                                    }
+                                })}
+                            />
+                            {errors.password && <p className='text-rose-500 text-xs font-medium mt-1'>{errors.password.message}</p>}
+                        </div>
 
                         <Button type="submit"
-                            className="w-50 hover:bg-blue-600 hover:text-white font-medium  ">
+                            className="w-full bg-[var(--accent-primary)] hover:bg-[var(--accent-hover)] text-white font-semibold py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg mt-4">
                             Create Account
                         </Button>
                     </div>
                 </form>
             </div>
-
         </div>
     )
 }

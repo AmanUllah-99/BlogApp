@@ -19,7 +19,7 @@ function LogoutBtn() {
         })
     }
   return (
-    <button onClick={handlerLogout} className=' text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300'>Logout</button>
+    <button onClick={handlerLogout} className='px-6 py-2 rounded-full font-medium text-[var(--accent-primary)] border border-[var(--accent-primary)] hover:bg-[var(--accent-primary)] hover:text-white transition-all duration-300 shadow-sm hover:shadow-md'>Logout</button>
   )
 }
 

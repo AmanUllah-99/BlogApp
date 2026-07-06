@@ -14,9 +14,9 @@ import Select from './Select.jsx'
  import AuthLayout from './AuthLayout.jsx'
 import PostForm from './post-form/PostForm.jsx'
 import Login from '../components/Login'
-
-
-
+import ShareButtons from './ShareButtons.jsx'
+import CommentSection from './CommentSection.jsx'
+import LikeDislike from './LikeDislike.jsx'
 
 // exporting all components from here to be used in other parts of the application
 
@@ -35,7 +35,7 @@ export {
     SignUp,
     AuthLayout,
     Login,
-    
-      
-
+    ShareButtons,
+    CommentSection,
+    LikeDislike
 }

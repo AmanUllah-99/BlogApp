@@ -30,14 +30,21 @@ function App() {
   }, [dispatch])
 
   return !loading ? (
-    <div className='w-full min-h-screen flex flex-col bg-gray-400'>
+    <div className='w-full min-h-screen flex flex-col'>
       <Header />
-      <main className='grid-flow-row'>
+      <main className='flex-grow'>
         <Outlet />
       </main>
       <Footer />
     </div>
-  ) : null
+  ) : (
+    <div className='w-full min-h-screen flex items-center justify-center bg-[var(--bg-primary)]'>
+      <div className='flex flex-col items-center animate-pulse'>
+        <div className='w-12 h-12 rounded-full border-4 border-t-rose-500 border-rose-100 animate-spin mb-4'></div>
+        <h1 className='text-xl font-medium text-[var(--text-primary)]'>Loading your experience...</h1>
+      </div>
+    </div>
+  )
 }
 
 export default App

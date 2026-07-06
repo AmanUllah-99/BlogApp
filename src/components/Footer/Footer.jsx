@@ -6,30 +6,30 @@ import Logo from '../logo.jsx'
 function Footer() {
   // Footer section with company info and navigation links
   return (
-    <section className="relative overflow-hidden py-10 text-white  bg-gray-700 border border-t-2 border-t-white">
+    <section className="relative overflow-hidden py-10 bg-[var(--bg-secondary)] border-t border-[var(--color-cream-200)] text-[var(--text-primary)]">
       <div className="relative z-10 mx-auto max-w-7xl px-4">
         <div className="-m-6 flex flex-wrap">
           <div className="w-full p-6 md:w-1/2 lg:w-5/12">
             <div className="flex h-full flex-col justify-between">
-              <div className="mb-4 inline-flex items-center">
-                <Logo width="100px" />
+              <div className="mb-4 flex justify-center md:justify-start">
+                <Logo width="180px" />
               </div>
               <div>
-                <p className="text-sm text-white text-left">
-                  &copy; Copyright 2023. All Rights Reserved by Amaan.
+                <p className="text-sm text-[var(--text-secondary)] text-left">
+                  &copy; Copyright {new Date().getFullYear()}. All Rights Reserved by Amaan.
                 </p>
               </div>
             </div>
           </div>
           <div className="w-full p-6 md:w-1/2 lg:w-2/12">
             <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-white">
+              <h3 className="tracking-px mb-6 text-xs font-bold uppercase text-[var(--accent-primary)]">
                 Company
               </h3>
               <ul>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-white hover:text-blue-700"
+                    className="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--accent-hover)] transition-colors duration-200"
                     to="/"
                   >
                     Features
@@ -37,7 +37,7 @@ function Footer() {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-white hover:text-blue-700"
+                    className="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--accent-hover)] transition-colors duration-200"
                     to="/"
                   >
                     Pricing
@@ -45,7 +45,7 @@ function Footer() {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-white hover:text-blue-700"
+                    className="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--accent-hover)] transition-colors duration-200"
                     to="/"
                   >
                     Affiliate Program
@@ -53,7 +53,7 @@ function Footer() {
                 </li>
                 <li>
                   <Link
-                    className=" text-base font-medium text-white hover:text-blue-700"
+                    className="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--accent-hover)] transition-colors duration-200"
                     to="/"
                   >
                     Press Kit
@@ -64,13 +64,13 @@ function Footer() {
           </div>
           <div className="w-full p-6 md:w-1/2 lg:w-2/12">
             <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-white">
+              <h3 className="tracking-px mb-6 text-xs font-bold uppercase text-[var(--accent-primary)]">
                 Support
               </h3>
               <ul>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-white hover:text-blue-700"
+                    className="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--accent-hover)] transition-colors duration-200"
                     to="/"
                   >
                     Account
@@ -78,7 +78,7 @@ function Footer() {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-white hover:text-blue-700"
+                    className="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--accent-hover)] transition-colors duration-200"
                     to="/"
                   >
                     Help
@@ -86,7 +86,7 @@ function Footer() {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-white hover:text-blue-700"
+                    className="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--accent-hover)] transition-colors duration-200"
                     to="/"
                   >
                     Contact Us
@@ -94,7 +94,7 @@ function Footer() {
                 </li>
                 <li>
                   <Link
-                    className=" text-base font-medium text-white hover:text-blue-700"
+                    className="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--accent-hover)] transition-colors duration-200"
                     to="/"
                   >
                     Customer Support
@@ -105,13 +105,13 @@ function Footer() {
           </div>
           <div className="w-full p-6 md:w-1/2 lg:w-3/12">
             <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-white">
+              <h3 className="tracking-px mb-6 text-xs font-bold uppercase text-[var(--accent-primary)]">
                 Legals
               </h3>
               <ul>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-white hover:text-blue-700"
+                    className="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--accent-hover)] transition-colors duration-200"
                     to="/"
                   >
                     Terms &amp; Conditions
@@ -119,7 +119,7 @@ function Footer() {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-white hover:text-blue-700"
+                    className="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--accent-hover)] transition-colors duration-200"
                     to="/"
                   >
                     Privacy Policy
@@ -127,7 +127,7 @@ function Footer() {
                 </li>
                 <li>
                   <Link
-                    className=" text-base font-medium text-white hover:text-blue-700"
+                    className="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--accent-hover)] transition-colors duration-200"
                     to="/"
                   >
                     Licensing

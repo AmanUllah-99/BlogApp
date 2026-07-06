@@ -36,8 +36,12 @@ function EditPost() {
         }
     }, [slug, navigate, userData])
     return post ? (
-        <div className='py-4 sm:py-6 md:py-8'>
+        <div className='py-12 bg-[var(--bg-primary)]'>
             <Container>
+                <div className='mb-8'>
+                    <h1 className='text-3xl font-bold text-[var(--text-primary)]'>Edit Article</h1>
+                    <p className='text-[var(--text-secondary)] mt-2'>Refine and update your published content.</p>
+                </div>
                 <PostForm post={post} />
             </Container>
         </div>
