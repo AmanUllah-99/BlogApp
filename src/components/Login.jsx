@@ -44,8 +44,9 @@ function Login() {
 
 
     return (
-        <div className='flex items-center justify-center w-full py-16 px-4'>
-            <div className={`mx-auto w-full max-w-lg bg-white/80 backdrop-blur-md rounded-2xl p-8 sm:p-10 border border-[var(--color-cream-200)] shadow-[0_8px_30px_rgb(0,0,0,0.04)]`}>
+        <div className='flex flex-col lg:flex-row items-center lg:items-start justify-center w-full py-16 px-4 gap-8 max-w-6xl mx-auto'>
+            {/* Login Form Box */}
+            <div className={`w-full max-w-lg bg-white/80 backdrop-blur-md rounded-2xl p-8 sm:p-10 border border-[var(--color-cream-200)] shadow-[0_8px_30px_rgb(0,0,0,0.04)]`}>
                 <div className="mb-8 flex justify-center">
                     <span className="inline-block">
                         <Logo width="150px" />
@@ -101,6 +102,24 @@ function Login() {
                         </Button>
                     </div>
                 </form>
+            </div>
+
+            {/* Demo Credentials Box */}
+            <div className="w-full max-w-sm bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-[var(--color-cream-200)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] lg:mt-0">
+                <h3 className="text-xl font-bold text-[var(--text-primary)] mb-4">Demo Access</h3>
+                <p className="text-sm text-[var(--text-secondary)] mb-6 leading-relaxed">
+                    Want to explore the project without creating an account? Use these demo credentials to sign in instantly.
+                </p>
+                <div className="space-y-4">
+                    <div className="bg-[var(--color-cream-100)] p-4 rounded-xl border border-[var(--color-cream-200)] transition-all hover:shadow-md">
+                        <span className="text-xs font-semibold text-[var(--accent-primary)] uppercase tracking-wider block mb-1">Email Address</span>
+                        <span className="text-[var(--text-primary)] font-medium select-all">demo@gmail.com</span>
+                    </div>
+                    <div className="bg-[var(--color-cream-100)] p-4 rounded-xl border border-[var(--color-cream-200)] transition-all hover:shadow-md">
+                        <span className="text-xs font-semibold text-[var(--accent-primary)] uppercase tracking-wider block mb-1">Password</span>
+                        <span className="text-[var(--text-primary)] font-medium select-all">11223344</span>
+                    </div>
+                </div>
             </div>
         </div>
     )
